@@ -1,6 +1,8 @@
 package com.learning.user.controller;
 
+import com.learning.user.model.Car;
 import com.learning.user.model.User;
+import com.learning.user.service.CarService;
 import com.learning.user.service.UserService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +19,17 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final CarService carService;
+
+    public UserController(UserService userService, CarService carService) {
         this.userService = userService;
+        this.carService = carService;
     }
 
     /**
      * Added Principal as parameter for learning purpose. It comes from Spring Security. Debug to see the content!!!
      * authorities = ROLE_ADMIN, ROLE_USER, authenticated = true, username = admin, .....
+     *
      * @param principal
      * @return
      */
@@ -57,6 +63,21 @@ public class UserController {
             return ResponseEntity
                     .ok()
                     .body(user);
+        } else {
+            return ResponseEntity
+                    .notFound()
+                    .build();
+        }
+    }
+
+    @GetMapping("/car/{id}")
+    public ResponseEntity<Car> getCarByUserId(@PathVariable("id") Integer id) {
+        Car car = carService.getCarByUserId(id);
+
+        if (car != null) {
+            return ResponseEntity
+                    .ok()
+                    .body(car);
         } else {
             return ResponseEntity
                     .notFound()
