@@ -34,7 +34,7 @@ public class CarController {
     @GetMapping("/by-user-id/{userId}")
     public ResponseEntity<Car> getCarByUserId(@PathVariable("userId") Integer userId) {
 
-        LOGGER.info("/by-user-id/{userId} called!!!!!!!!!!!!!!!!");
+        LOGGER.info("!!!! CarController getCarByUserId() is called!!!!!!!!!!!!!!!!");
         Car car = carService.findCarByUserId(userId);
 
         if (car != null) {
