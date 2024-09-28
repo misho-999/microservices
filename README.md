@@ -15,4 +15,8 @@ http://localhost:8761/
 - Start every microservice
 - Test with postman on  http://localhost:8080/* for example http://localhost:8080/cars/all, http://localhost:8080/users/all
 
+# Useful links
+https://www.youtube.com/watch?v=NpdG3lmKJ5g
+https://www.youtube.com/watch?v=MrSECdSIaOg
+
 
